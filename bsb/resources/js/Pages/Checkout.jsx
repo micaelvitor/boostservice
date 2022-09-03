@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Authenticated from '@/Layouts/Authenticated';
 import { Head, Link } from '@inertiajs/inertia-react';
 import 'chartkick/chart.js';
@@ -10,6 +10,16 @@ export default function Meusdados(props) {
     const [payWithCripto, setPayWithCripto] = useState(false)
     const [payPix, setPayWithPix] = useState(false)
     const [payWithCard, setPayWithCard] = useState(false)
+    const gerenciarClick = () => {
+        const divPagamento = document.getElementById("divPagamento")
+        divPagamento.scrollIntoView({ behavior: "smooth" })
+        setPayWithCard(false)
+    }
+    function descerParaDivCartao() {
+        const divCartao = document.getElementById("pagamentoCartao")
+        divCartao.scrollIntoView({ behavior: "smooth" })
+
+    }
     const openPaymentMethod = (value) => {
         switch (value) {
             case 'cripto':
@@ -19,7 +29,14 @@ export default function Meusdados(props) {
                 setPayWithPix(true)
                 break;
             case 'cartao':
-                setPayWithCard(true)
+                if (payWithCard == false) {
+                    setPayWithCard(true)
+                    setTimeout(function () {
+                        descerParaDivCartao()
+                    }, 0);
+                }else{
+                    descerParaDivCartao()
+                }
                 break;
             default:
                 break;
@@ -35,7 +52,7 @@ export default function Meusdados(props) {
             <div className="py-12">
                 <Container>
                     <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                        <div className="py-4 px-6 font-bold	text-gray-700 text-center">Pagamento</div>
+                        <div className="py-4 px-6 font-bold	text-gray-700 text-center" id='divPagamento'>Pagamento</div>
                         <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                             <div className="p-2 bg-white border-b border-gray-100">
                                 <Row>
@@ -102,7 +119,7 @@ export default function Meusdados(props) {
             </> : <></>}
             {payWithCard? 
             <>
-                <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-20">
+                <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-20" id='pagamentoCartao'>
                     <div className="py-4 px-6 font-bold	text-gray-700 text-center">Dados de Pagamento</div>
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div className='mt-10 mb-10'>
@@ -112,7 +129,7 @@ export default function Meusdados(props) {
                     </div>
                     <div className='mb-5 mt-2 text-end'>
                         <input type="button" className="inline-flex items-center px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150 undefined" variant="primary" onClick={(e) => {setPayWithCard(false)}} value="Prosseguir"/>
-                        <input type="button" className="inline-flex items-center px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150 undefined" variant="primary" onClick={(e) => {setPayWithCard(false)}} value="Fechar"/>
+                        <input type="button" className="inline-flex items-center px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150 undefined" variant="primary" onClick={(e) => {gerenciarClick()}} value="Fechar"/>
                     </div>
                 </div>
             </> : <></>}

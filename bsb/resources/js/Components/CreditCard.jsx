@@ -40,7 +40,7 @@ export default class PaymentForm extends React.Component {
                         <div className="form-group col-md-12">
                             <label for="name">Numero do cartao</label>
                             <input
-                            type="tel"
+                            type="number"
                             name="number"
                             placeholder="Numero do cartao"
                             onChange={this.handleInputChange}
