@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import Authenticated from '@/Layouts/Authenticated';
 import { Head, Link } from '@inertiajs/inertia-react';
 import 'chartkick/chart.js';
@@ -7,6 +7,7 @@ import PaymentForm from '../Components/CreditCard';
 import Footer from '../Components/Footer';
 
 export default function Meusdados(props) {
+
     const [payWithCripto, setPayWithCripto] = useState(false)
     const [payPix, setPayWithPix] = useState(false)
     const [payWithCard, setPayWithCard] = useState(false)
@@ -24,25 +25,39 @@ export default function Meusdados(props) {
         switch (value) {
             case 'cripto':
                 setPayWithCripto(true)
-                break;
+                break
             case 'pix':
                 setPayWithPix(true)
-                break;
+                break
             case 'cartao':
                 if (payWithCard == false) {
                     setPayWithCard(true)
                     setTimeout(function () {
                         descerParaDivCartao()
-                    }, 0);
+                    }, 0)
                 }else{
                     descerParaDivCartao()
                 }
-                break;
+                break
             default:
-                break;
+                break
         }
-    };
+    }
+    const submit = (e) => {        
+        e.preventDefault()
+        
+        //usuario
+        //id 
+        //email
+        //valor
+        //boost_de
+        //boost_para
+        //pendete['payment_code']
 
+    }
+
+
+    
     return (
         <Authenticated
             auth={props.auth}
@@ -108,11 +123,9 @@ export default function Meusdados(props) {
             </div>
             {payWithCripto? 
             <>
-
             </>
             : 
             <>
-
             </>}
             {payPix? 
             <>
@@ -121,16 +134,18 @@ export default function Meusdados(props) {
             <>
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-20" id='pagamentoCartao'>
                     <div className="py-4 px-6 font-bold	text-gray-700 text-center">Dados de Pagamento</div>
-                    <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        <div className='mt-10 mb-10'>
-                            <PaymentForm>
-                            </PaymentForm>
+                    <form onSubmit={submit}>
+                        <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                            <div className='mt-10 mb-10'>
+                                <PaymentForm>
+                                </PaymentForm>
+                            </div>
                         </div>
-                    </div>
-                    <div className='mb-5 mt-2 text-end'>
-                        <input type="button" className="inline-flex items-center px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150 undefined" variant="primary" onClick={(e) => {setPayWithCard(false)}} value="Prosseguir"/>
-                        <input type="button" className="inline-flex items-center px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150 undefined" variant="primary" onClick={(e) => {gerenciarClick()}} value="Fechar"/>
-                    </div>
+                        <div className='mb-5 mt-2 text-end'>
+                            <input type="submit" className="inline-flex items-center px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150 undefined" variant="primary" value="Prosseguir"/>
+                            <input type="button" className="inline-flex items-center px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150 undefined" variant="primary" onClick={(e) => {gerenciarClick()}} value="Fechar"/>
+                        </div>
+                    </form>
                 </div>
             </> : <></>}
         <Footer>
