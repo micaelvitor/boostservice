@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -40,8 +42,14 @@ Route::get('/checkout', function () {
     return Inertia::render('Checkout');
 })->middleware(['auth', 'verified'])->name('checkout');
 
+Route::get('/paymentcheck', function () {
+    return Blade::render('checkout');
+})->middleware(['auth', 'verified'])->name('paymentcheck');
+
+
 Route::get('/adminPanel', function () {
     return Inertia::render('Adminpanel');
 })->middleware(['auth', 'verified', 'admin'])->name('adminpanel');
+
 
 require __DIR__.'/auth.php';

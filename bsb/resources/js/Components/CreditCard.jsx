@@ -4,6 +4,7 @@ import 'react-credit-cards/es/styles-compiled.css';
 
  
 export default class PaymentForm extends React.Component {
+  
 
   state = {
     cvc: '',
@@ -11,7 +12,9 @@ export default class PaymentForm extends React.Component {
     focus: '',
     name: '',
     number: '',
+    expiracao: ''
   }
+
 
   constructor(props) {
     super(props)
@@ -25,12 +28,24 @@ export default class PaymentForm extends React.Component {
   handleInputChange = (e) => {
     const { name, value } = e.target
     this.setState({ [name]: value })
+    if (name == 'expiry') {
+      this.expiryDate(value)
+    }
   }
 
   handleSubmitForm = (e) =>{
-    console.log(e)
+    console.log(e.target[0].value)
     e.preventDefault()
   }
+
+  expiryDate = (expdate) =>{
+    let xpdate = expdate.replace(/\//g, "").substring(0, 2) + 
+      (expdate.length > 2 ? '/' : '') + 
+      expdate.replace(/\//g, "").substring(2, 4);
+    this.state.expiracao = xpdate
+  }
+  
+  
   
   render() {
     return (
@@ -50,7 +65,7 @@ export default class PaymentForm extends React.Component {
                   <div className="form-group col-md-12">
                       <label htmlFor="name">Numero do cartao</label>
                       <input
-                      type="number"
+                      type="text"
                       name="number"
                       placeholder="Numero do cartao"
                       onChange={this.handleInputChange}
@@ -80,21 +95,23 @@ export default class PaymentForm extends React.Component {
                       placeholder="Ex: 04/2030"
                       onChange={this.handleInputChange}
                       onFocus={this.handleInputFocus}
+                      value={this.state.expiracao}
                       className="form-control"
-                      mask='mm/yyyy'
                       required
                       />
                   </div>
                   <div className="form-group col-md-6">
                       <label htmlFor="name">CVV</label>
                       <input
-                      type="tel"
+                      type="text"
                       name="cvc"
                       placeholder="Ex: 999"
                       onChange={this.handleInputChange}
                       onFocus={this.handleInputFocus}
                       className="form-control"
                       required
+                      maxLength={3}
+
                       />
                   </div>    
               </div> 

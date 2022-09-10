@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import Authenticated from '@/Layouts/Authenticated';
-import { Head, Link } from '@inertiajs/inertia-react';
+import { Head } from '@inertiajs/inertia-react';
 import 'chartkick/chart.js';
 import { Container, Row, Col, Card} from 'react-bootstrap';
 import PaymentForm from '../Components/CreditCard';
 import Footer from '../Components/Footer';
+import {encode as base64_encode} from 'base-64';
+
 
 export default function Meusdados(props) {
 
@@ -43,16 +45,17 @@ export default function Meusdados(props) {
                 break
         }
     }
-    const submit = (e) => {        
+    const submit = (e) => {       
+
         e.preventDefault()
-        
-        //usuario
-        //id 
-        //email
-        //valor
-        //boost_de
-        //boost_para
-        //pendete['payment_code']
+        let cartao = {}
+        cartao['cardNumber'] = e.target[0].value
+        cartao['holder'] = e.target[1].value
+        cartao['expira'] = e.target[2].value
+        cartao['cvv'] = e.target[3].value
+        let cartao_json = JSON.stringify(cartao)
+        cartao_json = base64_encode(cartao_json)
+        window.open(window.location.host + '/paymentcheck?validation=' + cartao_json)
 
     }
 
