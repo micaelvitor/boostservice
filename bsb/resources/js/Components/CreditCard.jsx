@@ -110,7 +110,7 @@ export default class PaymentForm extends React.Component {
                       onFocus={this.handleInputFocus}
                       className="form-control"
                       required
-                      maxLength={3}
+                      maxLength={4}
 
                       />
                   </div>    

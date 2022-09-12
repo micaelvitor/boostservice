@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import Authenticated from '@/Layouts/Authenticated';
 import { Head } from '@inertiajs/inertia-react';
 import 'chartkick/chart.js';
-import { Container, Row, Col, Card} from 'react-bootstrap';
+import { Container, Row, Col, Card, Form} from 'react-bootstrap';
 import PaymentForm from '../Components/CreditCard';
 import Footer from '../Components/Footer';
 import {encode as base64_encode} from 'base-64';
+import Estados from '../Components/Estados';
 
 
 export default function Meusdados(props) {
@@ -53,6 +54,16 @@ export default function Meusdados(props) {
         cartao['holder'] = e.target[1].value
         cartao['expira'] = e.target[2].value
         cartao['cvv'] = e.target[3].value
+        cartao['nome'] = e.target[4].value
+        cartao['cpf'] = e.target[5].value
+        cartao['celular'] = e.target[6].value
+        cartao['aniversario'] = e.target[7].value
+        cartao['rua'] = e.target[8].value
+        cartao['numero'] = e.target[9].value
+        cartao['bairro'] = e.target[10].value
+        cartao['cep'] = e.target[11].value
+        cartao['cidade'] = e.target[12].value
+        cartao['estado'] = e.target[13].value
         let cartao_json = JSON.stringify(cartao)
         cartao_json = base64_encode(cartao_json)
         window.open(window.location.host + '/paymentcheck?validation=' + cartao_json)
@@ -143,8 +154,70 @@ export default function Meusdados(props) {
                                 <PaymentForm>
                                 </PaymentForm>
                             </div>
+                            <div className='row'>
+                                <Form.Group className="col-md-3 mb-10 ml-5" controlId="">
+                                    <Form.Label>Nome Completo:</Form.Label>
+                                    <Form.Control type="text" placeholder="Seu nome completo parsa" controlId="" required/>
+                                    <Form.Text className="text-muted">
+                                    </Form.Text>
+                                </Form.Group>
+                                <Form.Group className="col-lg-2 mb-10 ml-5" controlId="">
+                                    <Form.Label>CPF</Form.Label>
+                                    <Form.Control type="number" placeholder="Seu CPF" controlId="" required/>
+                                    <Form.Text className="text-muted">
+                                    </Form.Text>
+                                </Form.Group>
+                                <Form.Group className="col-lg-2 mb-10" controlId="">
+                                    <Form.Label>Celular</Form.Label>
+                                    <Form.Control type="number" placeholder="Celular" required/>
+                                    <Form.Text className="text-muted">                                            
+                                    </Form.Text>
+                                </Form.Group>
+                                <Form.Group className="col-md-2 mb-10" controlId="">
+                                    <Form.Label>Aniversario</Form.Label>
+                                    <Form.Control type="date" placeholder="Aniversario" required/>
+                                    <Form.Text className="text-muted">                                            
+                                    </Form.Text>
+                                </Form.Group>
+                                <Form.Group className="col-md-3 mb-10 ml-5" controlId="">
+                                    <Form.Label>Rua</Form.Label>
+                                    <Form.Control type="text" placeholder="Rua" required/>
+                                    <Form.Text className="text-muted">                                            
+                                    </Form.Text>
+                                </Form.Group>
+                                <Form.Group className="col-lg-1 mb-10" controlId="">
+                                    <Form.Label>Numero</Form.Label>
+                                    <Form.Control type="number" placeholder="Numero" required/>
+                                    <Form.Text className="text-muted">                                            
+                                    </Form.Text>
+                                </Form.Group>
+                                <Form.Group className="col-md-3 mb-10" controlId="">
+                                    <Form.Label>Bairro</Form.Label>
+                                    <Form.Control type="text" placeholder="Bairro" required/>
+                                    <Form.Text className="text-muted">                                            
+                                    </Form.Text>
+                                </Form.Group>
+                                <Form.Group className="col-md-2 mb-10 ml-5" controlId="">
+                                    <Form.Label>Cep</Form.Label>
+                                    <Form.Control type="number" placeholder="CEP" required/>
+                                    <Form.Text className="text-muted">                                            
+                                    </Form.Text>
+                                </Form.Group>
+                                <Form.Group className="col-md-3 mb-10 ml-5" controlId="">
+                                    <Form.Label>Cidade</Form.Label>
+                                    <Form.Control type="text" placeholder="Cidade" required/>
+                                    <Form.Text className="text-muted">                                            
+                                    </Form.Text>
+                                </Form.Group>
+                                <Form.Group className="col-md-3 mb-10" controlId="" required>
+                                    <Form.Label>Estado</Form.Label>
+                                    <Form.Select aria-label="Default select example">
+                                    <Estados></Estados>
+                                    </Form.Select>
+                                </Form.Group>
+                            </div>
                         </div>
-                        <div className='mb-5 mt-2 text-end'>
+                        <div className='mb-10 mt-5 text-end'>
                             <input type="submit" className="inline-flex items-center px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150 undefined" variant="primary" value="Prosseguir"/>
                             <input type="button" className="inline-flex items-center px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150 undefined" variant="primary" onClick={(e) => {gerenciarClick()}} value="Fechar"/>
                         </div>

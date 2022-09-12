@@ -15,7 +15,18 @@ return new class extends Migration
     {
         Schema::create('transacoes', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id');
+            $table->integer('parcelas');
+            $table->
             $table->timestamps();
+
+            // "installments": 1,
+            // "installment_value": 2401,
+            // "charge_id": 1684095,
+            // "status": "waiting",
+            // "total": 2401,
+            // "payment": "credit_card"
+            
         });
     }
 

@@ -15,6 +15,7 @@
             } else {
                 // Trata a resposta
                 let paymentToken = response.data.payment_token
+                console.log(array);
                 console.log(response);
                 // completeTransaction(paymentToken)
             }
