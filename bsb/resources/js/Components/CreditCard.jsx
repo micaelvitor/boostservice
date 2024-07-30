@@ -1,11 +1,7 @@
 import React from 'react';
-import Cards from 'react-credit-cards';
-import 'react-credit-cards/es/styles-compiled.css';
+import Cards from 'react-credit-cards-2';
 
- 
 export default class PaymentForm extends React.Component {
-  
-
   state = {
     cvc: '',
     expiry: '',
@@ -14,7 +10,6 @@ export default class PaymentForm extends React.Component {
     number: '',
     expiracao: ''
   }
-
 
   constructor(props) {
     super(props)
@@ -44,8 +39,6 @@ export default class PaymentForm extends React.Component {
       expdate.replace(/\//g, "").substring(2, 4);
     this.state.expiracao = xpdate
   }
-  
-  
   
   render() {
     return (

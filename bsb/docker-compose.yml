@@ -1,0 +1,35 @@
+version: "3.8"
+services:
+  laravel:
+    build: .
+    container_name: laravel
+    environment:
+      PHP_OPCACHE_ENABLE: 1
+      PRODUCTION: 0
+    ports:
+      - 80:80
+    volumes:
+      - .:/opt/laravel
+      - vendor-data:/opt/laravel/vendor
+      - storage-data:/opt/laravel/storage
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://laravel/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  db:
+    image: mariadb:10.5
+    container_name: mariadb
+    restart: unless-stopped
+    environment:
+      - MYSQL_DATABASE=strondaboost
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=stronda
+      - MYSQL_ROOT_PASSWORD=cdhu4545
+    ports:
+        - 3306:3306
+volumes:
+  vendor-data:
+  storage-data:
+  dbdata:

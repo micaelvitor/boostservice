@@ -10,7 +10,6 @@ class GerenciaNetController extends Controller
 {
 
     public function processCardPayment(Request $request){
-        
         $gerenciaNetProcessor = new GerenciaNetRepositorie();
         $paymentToken = $request->only('paymentToken')['paymentToken'];
         $retorno = $gerenciaNetProcessor->processarPagamento($paymentToken);
