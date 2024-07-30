@@ -186,8 +186,6 @@ export default function Meusdados(props) {
                 }
 
             </div>
-            <Footer>
-            </Footer>
         </Authenticated>
     );
 }

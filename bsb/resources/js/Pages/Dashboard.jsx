@@ -76,8 +76,6 @@ export default function Dashboard(props) {
                     </Row>
                 </Container>
             </div>
-            <Footer>
-            </Footer>
         </Authenticated>
 
     );

@@ -56,13 +56,10 @@ export default function Dashboard(props) {
                             </div>
                         </Col>
                         <Col>
-                        
                         </Col>
                     </Row>
                 </Container>
             </div>
-            <Footer>
-            </Footer>
         </Authenticated>
 
     );

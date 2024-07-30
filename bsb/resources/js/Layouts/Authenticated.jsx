@@ -4,12 +4,13 @@ import Dropdown from '@/Components/Dropdown';
 import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import { Link } from '@inertiajs/inertia-react';
+import Footer from '@/Components/Footer';
 
 export default function Authenticated({ auth, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
     return (
-        <div className="min-h-screen bg-gray-100">
+        <><div className="min-h-screen bg-gray-100">
             <nav className="bg-white border-b border-gray-100">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
@@ -30,13 +31,13 @@ export default function Authenticated({ auth, header, children }) {
                                 <NavLink href={route('meuplano')} active={route().current('meuplano')}>
                                     Meu Plano
                                 </NavLink>
-                                {auth.user.adminUser?
+                                {auth.user.adminUser ?
                                     <>
                                         <NavLink href={route('adminpanel')} active={route().current('adminpanel')}>
                                             Painel de Controle
                                         </NavLink>
                                     </>
-                                :<></>}
+                                    : <></>}
                             </div>
                         </div>
 
@@ -60,8 +61,7 @@ export default function Authenticated({ auth, header, children }) {
                                                     <path
                                                         fillRule="evenodd"
                                                         d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                                        clipRule="evenodd"
-                                                    />
+                                                        clipRule="evenodd" />
                                                 </svg>
                                             </button>
                                         </span>
@@ -87,15 +87,13 @@ export default function Authenticated({ auth, header, children }) {
                                         strokeLinecap="round"
                                         strokeLinejoin="round"
                                         strokeWidth="2"
-                                        d="M4 6h16M4 12h16M4 18h16"
-                                    />
+                                        d="M4 6h16M4 12h16M4 18h16" />
                                     <path
                                         className={showingNavigationDropdown ? 'inline-flex' : 'hidden'}
                                         strokeLinecap="round"
                                         strokeLinejoin="round"
                                         strokeWidth="2"
-                                        d="M6 18L18 6M6 6l12 12"
-                                    />
+                                        d="M6 18L18 6M6 6l12 12" />
                                 </svg>
                             </button>
                         </div>
@@ -132,5 +130,7 @@ export default function Authenticated({ auth, header, children }) {
 
             <main>{children}</main>
         </div>
+            <Footer />
+        </>
     );
 }
