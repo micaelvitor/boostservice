@@ -52,6 +52,9 @@ rm -rf public/storage
 # Build up a new storage link
 php artisan storage:link
 
+# Migrate up a new storage link
+php artisan migrate
+
 # Check if running in production or development mode
 if [ "$PRODUCTION" = "1" ]; then
     echo "Running in production mode"
