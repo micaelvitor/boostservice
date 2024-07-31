@@ -32,8 +32,8 @@ COPY conf.d/supervisor/supervisord.conf /etc/supervisord.conf
 COPY . /opt/laravel
 
 # Set up permissions
-RUN chown -R www-data:www-data /opt/laravel \
-    && chmod -R 755 /opt/laravel/storage
+RUN chown -R www-data:www-data /opt/laravel/storage /opt/laravel/bootstrap/cache \
+    && chmod -R 755 /opt/laravel/storage /opt/laravel/bootstrap/cache
 
 # Scheduler setup
 
